@@ -48,13 +48,11 @@ function CreatureField() {
             {creatureData.map(creature => (
                 <Creature
                     key={creature.id}
-                    id={creature.id}
                     name={creature.name}
                     age={creature.age}
                     sleepImageUrl={creature.sleepImageUrl}
                     awakeImageUrl={creature.awakeImageUrl}
-                    x={creature.x}
-                    y={creature.y}
+                    x={creature.x} y={creature.y}
                 />
             ))} 
         </div>
