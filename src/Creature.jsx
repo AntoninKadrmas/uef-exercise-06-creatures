@@ -9,7 +9,7 @@ function Creature(props) {
 
     return (
         <div style={style}>
-            <img src={props.imageUrl} alt={props.name} width="120" />
+            <img src={props.sleepImageUrl} alt={props.name} width="120" />
             <p>{props.name}, age {props.age}</p>
         </div>
     );
