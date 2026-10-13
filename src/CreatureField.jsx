@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Creature from './Creature.jsx';
 
 export const CONTAINER_SIZE = 800;
@@ -34,7 +35,9 @@ function CreatureField() {
             awakeImageUrl: "/images/fifth_awake.png",
             x: 550, y: 590
         }
-    ]
+
+    ] 
+    const [awakeAmount, setAwakeAmount]= useState(0)
 
     const fieldStyle = {
         position: 'relative',
@@ -47,8 +50,10 @@ function CreatureField() {
 
     return (
         <div style={fieldStyle}>
+            <p>{awakeAmount} of 5 creatures awake</p>
             {creatureData.map(creature => (
                 <Creature
+                onWake={(prev)=>setAwakeAmount((amount)=>amount+prev ?1 : -1)}
                     key={creature.id}
                     name={creature.name}
                     age={creature.age}

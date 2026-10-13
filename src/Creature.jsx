@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CONTAINER_SIZE } from "./CreatureField";
+import { useEffect } from "react";
 
 const CREATE_SIZE = 120;
 const GAP = CREATE_SIZE/2 + 20;
@@ -18,6 +19,7 @@ function Creature(props) {
         const [newX,newY] = [getRandomCoordinate(),getRandomCoordinate()];
         setCoordinates({x:newX, y:newY})
     }
+    useEffect(()=>{props.onWake(isAwake)}, [isAwake])
 
     let style = {
         position: 'absolute',
