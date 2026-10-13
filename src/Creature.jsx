@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function Creature(props) {
+    function toggleAwake(){setIsAwake((prev)=>!prev)}
 
     const [isAwake, setIsAwake] = useState(false);
 
@@ -13,7 +14,8 @@ function Creature(props) {
     };
 
     return (
-        <div style={style}>
+        
+        <div onCLick={toggleAwake} style={style}>
             <img src={props.sleepImageUrl} alt={props.name} width="120" />
             <p>{props.name}, age {props.age}</p>
         </div>
