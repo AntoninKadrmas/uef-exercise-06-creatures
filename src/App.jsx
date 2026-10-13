@@ -13,3 +13,6 @@ function App() {
 }
 
 export default App;
+
+// Antonin Kadrmas
+// Juan Pablo Cayon
