@@ -1,5 +1,7 @@
 import Creature from './Creature.jsx';
 
+export const CONTAINER_SIZE = 800;
+
 function CreatureField() {
     const creatureData =[
         {
@@ -36,8 +38,8 @@ function CreatureField() {
 
     const fieldStyle = {
         position: 'relative',
-        width: '800px',
-        height: '800px',
+        width: `${CONTAINER_SIZE}px`,
+        height: `${CONTAINER_SIZE}px`,
         border: '2px solid #ccc',
         margin: '20px auto',
         backgroundColor: '#6b8c66'
