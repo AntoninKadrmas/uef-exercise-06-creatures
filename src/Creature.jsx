@@ -16,7 +16,7 @@ function Creature(props) {
     return (
         
         <div onCLick={toggleAwake} style={style}>
-            <img src={props.sleepImageUrl} alt={props.name} width="120" />
+            <img src={!isAwake ? props.sleepImageUrl : props.awakeImageUrl} alt={props.name} width="120" />
             <p>{props.name}, age {props.age}</p>
         </div>
     );
