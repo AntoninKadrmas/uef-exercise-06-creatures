@@ -1,4 +1,9 @@
+import { useState } from "react";
+
 function Creature(props) {
+
+    const [isAwake, setIsAwake] = useState(false);
+
     const style = {
         position: 'absolute',
         left: props.x + 'px',
