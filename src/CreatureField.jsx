@@ -37,7 +37,8 @@ function CreatureField() {
         }
 
     ] 
-    const [awakeAmount, setAwakeAmount]= useState(0)
+
+    const [isAwakeArray, setIsAwakeArray] = useState(creatureData.map(()=>false))
 
     const fieldStyle = {
         position: 'relative',
@@ -50,10 +51,11 @@ function CreatureField() {
 
     return (
         <div style={fieldStyle}>
-            <p>{awakeAmount} of 5 creatures awake</p>
-            {creatureData.map(creature => (
+            <p>{isAwakeArray.filter(Boolean).length} of 5 creatures awake</p>
+            {creatureData.map((creature,index) => (
                 <Creature
-                    onWake={(prev)=>setAwakeAmount((amount)=>amount + (prev ? 1 : -1))}
+                    onWake={()=>setIsAwakeArray((prev)=> prev.map((awake,i)=> i===index ? !awake : awake))}
+                    isAwake={isAwakeArray[index]}
                     key={creature.id}
                     name={creature.name}
                     age={creature.age}

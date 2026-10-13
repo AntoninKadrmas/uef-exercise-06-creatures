@@ -7,7 +7,6 @@ const MIN_GAP = 20;
 
 function Creature(props) {
     const [coordinates, setCoordinates] = useState({x:props.x,y:props.y})
-    const [isAwake, setIsAwake] = useState(false);
     
     const getRandomCoordinates = () => {
         const minX = MIN_GAP, maxX = CONTAINER_SIZE - MIN_GAP - CREATE_X;
@@ -16,9 +15,7 @@ function Creature(props) {
     }
 
     function toggleAwake(){
-        const newAwake = !isAwake;
-        setIsAwake(newAwake);
-        props.onWake(newAwake);
+        props.onWake();
         const [newX,newY] = getRandomCoordinates();
         setCoordinates({x:newX, y:newY})
     }
@@ -35,7 +32,7 @@ function Creature(props) {
     return (
         
         <div onClick={toggleAwake} style={style}>
-            <img src={!isAwake ? props.sleepImageUrl : props.awakeImageUrl} alt={props.name} width={CREATE_X} />
+            <img src={!props.isAwake ? props.sleepImageUrl : props.awakeImageUrl} alt={props.name} width={CREATE_X} />
             <p>{props.name}, age {props.age}</p>
         </div>
     );
