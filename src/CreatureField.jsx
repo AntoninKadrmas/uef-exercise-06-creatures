@@ -53,7 +53,7 @@ function CreatureField() {
             <p>{awakeAmount} of 5 creatures awake</p>
             {creatureData.map(creature => (
                 <Creature
-                onWake={(prev)=>setAwakeAmount((amount)=>amount+prev ?1 : -1)}
+                    onWake={(prev)=>setAwakeAmount((amount)=>amount + (prev ? 1 : -1))}
                     key={creature.id}
                     name={creature.name}
                     age={creature.age}

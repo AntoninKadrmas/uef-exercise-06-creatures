@@ -1,25 +1,28 @@
 import { useState } from "react";
 import { CONTAINER_SIZE } from "./CreatureField";
-import { useEffect } from "react";
 
-const CREATE_SIZE = 120;
-const GAP = CREATE_SIZE/2 + 20;
+const CREATE_X = 120;
+const CREATE_Y = 180;
+const MIN_GAP = 20;
 
 function Creature(props) {
     const [coordinates, setCoordinates] = useState({x:props.x,y:props.y})
     const [isAwake, setIsAwake] = useState(false);
     
-    const getRandomCoordinate = () => {
-        const min = GAP, max = CONTAINER_SIZE-GAP;
-        return Math.random()*(max-min)+min;
+    const getRandomCoordinates = () => {
+        const minX = MIN_GAP, maxX = CONTAINER_SIZE - MIN_GAP - CREATE_X;
+        const minY = MIN_GAP, maxY = CONTAINER_SIZE - MIN_GAP - CREATE_Y;
+        return [Math.random()*(maxX-minX)+minX, Math.random()*(maxY-minY)+minY];
     }
 
     function toggleAwake(){
-        setIsAwake((prev)=>!prev);
-        const [newX,newY] = [getRandomCoordinate(),getRandomCoordinate()];
+        const newAwake = !isAwake;
+        setIsAwake(newAwake);
+        props.onWake(newAwake);
+        const [newX,newY] = getRandomCoordinates();
         setCoordinates({x:newX, y:newY})
     }
-    useEffect(()=>{props.onWake(isAwake)}, [isAwake])
+    
 
     let style = {
         position: 'absolute',
@@ -32,7 +35,7 @@ function Creature(props) {
     return (
         
         <div onClick={toggleAwake} style={style}>
-            <img src={!isAwake ? props.sleepImageUrl : props.awakeImageUrl} alt={props.name} width={CREATE_SIZE} />
+            <img src={!isAwake ? props.sleepImageUrl : props.awakeImageUrl} alt={props.name} width={CREATE_X} />
             <p>{props.name}, age {props.age}</p>
         </div>
     );
